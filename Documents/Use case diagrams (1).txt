@@ -1,0 +1,32 @@
+﻿Bricen Hicks 
+Evan Primasing
+Kenneth Gray
+
+
+
+
+1. (log in)                Users may use this system to log into their account. This will allow them to see the items that they have rented. This will also allow them to see the items that they have added to their wishlist. Lastly, this will allow them to be able to navigate to a profile menu where they can see all of their user information. This will allow the users to access the functionality of the system, as nothing is allowed to be done if the user is not signed into their account.
+        
+2. (account)        Users will be able to use this website to create an account if they do not already have one. The system will prompt them to enter a username and a password, and have a small button underneath that specifies the user to click on it if they do not previously have an account. This will allow the users to access the functionality of the website, as nothing can be done unless they are signed in.
+
+
+3. (trips)                The website will offer users the chance to sign up for trips.  The users must register themselves with an account and then pay the trip fee if there is one. This list will also be saved in the database and therefore give the Govs outdoors the ability to get participant information that is required to plan the trip more focused around the participants. Space will be limited, so it’ll be first come first serve.
+
+
+4. (events)        The Govs Outdoors hosts events such as the dyno, campus and bouldering competition. These competitions will be posted to the website to help inform users and will allow them to join an event. This form of the participants will make it much easier for the Gov’s Outdoors staff to get an estimate on the number of people that are going to attend each event. Events are held at the Foy Center located on Austin Peay’s campus. 
+
+
+5. (rent)                Users will have the ability to rent gear through the website such as climbing, hiking, camping, and water sport gear. When a User wants to rent an item of equipment, they will select their time frame and add it to their cart. 
+
+
+6. (wishlist)        Users will have the ability to add gear to their wishlist. This will save the gear into the database, and everytime they return back to the website and log into their account their wishlist will be tied to their account so they will still be able to access it. From the wishlist, users will also be able to add items from their wishlist into their cart. Users will also be able to remove items from their wishlist as they need. 
+
+
+7. (Checkout)        Users will be able to add items straight into their cart and then from there checkout. This will require a valid payment method. The checkout menu will display to the users their total cost and local tax. This feature will also be secure, so that the user’s information is handled in an ethical way. 
+
+
+8. (image submission)        Users will have the ability to submit their photos to our website. This feature will allow them to open a file chooser and upload their photo files. The photos will have to be from trips or events that they have gone on through Gov’s Outdoors. The photos will also have to go through a selection phase, so that we can ensure that no inappropriate pictures get uploaded.
+
+
+9. (search)        Users will have the ability to search the website to find products. This will allow users to easily navigate the website, and quickly jump from page to page. This will allow for easy utilization of our website, and in turn allow for more users to want to use it.
+10. (contact)         Users will be able to contact Gov’s Outdoors. Directly from the website, users will have the ability to call, email, or look us up on social media. They will also have an option to fill out a contact form.
