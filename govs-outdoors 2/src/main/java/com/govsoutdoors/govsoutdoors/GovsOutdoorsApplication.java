@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GovsOutdoorsApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(GovsOutdoorsApplication.class, args);
+
 	}
 
 }
