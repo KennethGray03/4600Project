@@ -10,8 +10,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string): Observable<boolean> {
-    // Your login logic here
-    // For demo purposes, return a mock value indicating successful login
+    return this.http.post<any>('http://localhost:4200/login', { username, password });
     return of(true);
   }
 

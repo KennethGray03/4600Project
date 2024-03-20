@@ -32,11 +32,10 @@ export class LogInComponent implements OnInit {
     const password = this.loginForm.value.password;
     this.authService.login(username, password).subscribe(
       () => {
-        // Navigate to the home page or any other page upon successful login
         this.router.navigate(['/home']);
       },
       error => {
-        this.errorMessage = 'Invalid username or password';
+        this.errorMessage = error.error.message || 'An error occurred during login';
         console.error('Login error:', error);
       }
     );
