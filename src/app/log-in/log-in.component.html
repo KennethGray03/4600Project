@@ -1,0 +1,20 @@
+
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form (submit)="onSubmit()">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+        <button type="submit">Login</button>
+        <br>
+        <header><br></header>
+        <p >Don't have an account?</p>
+        <button routerLink="/signup" routerLinkActive="active" class="text-red-500 text-xl">Sign up!</button>
+    </form>
+</div>
