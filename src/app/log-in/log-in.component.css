@@ -57,3 +57,11 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #000000;
 }
+.error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  .welcome-message {
+    color: green; /* Example color */
+    /* Additional styling */
+  }

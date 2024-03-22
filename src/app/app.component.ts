@@ -6,6 +6,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({

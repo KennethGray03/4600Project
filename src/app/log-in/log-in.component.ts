@@ -1,43 +1,44 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component} from '@angular/core';
 import { AuthService } from '../auth.service';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-log-in',
   standalone:true,
+  imports: [FormsModule,CommonModule,NgIf],
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.css']
 })
-export class LogInComponent implements OnInit {
-  loginForm: FormGroup;
-  errorMessage: string = "";
+export class LogInComponent {
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
-    this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-  });
-  }
-
-  ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-  }
-
-  onSubmit(): void {
-    const username = this.loginForm.value.username;
-    const password = this.loginForm.value.password;
-    this.authService.login(username, password).subscribe(
-      () => {
-        this.router.navigate(['/home']);
+  username: string = '';
+  password: string = '';
+  errorMessage: string = '';
+  welcomeMessage: string =''
+  constructor(private authService: AuthService, private router: Router) {}
+ login(event: Event){
+  event.preventDefault();
+    console.log('Hello');
+    console.log(this.username, this.password);
+    this.authService.login(this.username, this.password).subscribe({
+      next: (response) => {
+        console.log('Login successful', response);
+        this.welcomeMessage = `Welcome, ${this.username}!`; // Set welcome message
+        setTimeout(() => {
+          this.router.navigate(['/homepage']); // Redirect after 3 seconds
+        }, 2500);
       },
-      error => {
-        this.errorMessage = error.error.message || 'An error occurred during login';
-        console.error('Login error:', error);
+      error: (error) => {
+        console.error('Login failed', error);
+        this.errorMessage = 'Login failed. Please check your credentials and try again.'; // Set the error message
+        setTimeout(() => {
+          this.errorMessage= ""; // Redirect after 3 seconds
+        }, 1500);
       }
-    );
-  }
+    });
+   }
+  
 }
