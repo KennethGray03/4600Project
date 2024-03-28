@@ -13,7 +13,13 @@ export class CartService {
   addToCart(product: any) {
     const currentItems = this.itemsSubject.getValue();
     const updatedItems = [...currentItems, product];
-    this.itemsSubject.next(updatedItems); 
+    this.itemsSubject.next(updatedItems);
+  }
+
+  addToWishlist(product: any){
+    const currentItems = this.itemsSubject.getValue();
+    const updatedItems = [...currentItems,product];
+    this.itemsSubject.next(updatedItems);
   }
 
   getItems() {
@@ -23,4 +29,5 @@ export class CartService {
   clearCart() {
     this.itemsSubject.next([]);
   }
+  
 }
