@@ -1,14 +1,14 @@
 import { Component} from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-log-in',
   standalone:true,
-  imports: [FormsModule,CommonModule,NgIf],
+  imports: [FormsModule,CommonModule,NgIf,RouterLinkActive],
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.css']
 })
@@ -18,7 +18,10 @@ export class LogInComponent {
   password: string = '';
   errorMessage: string = '';
   welcomeMessage: string =''
+
+  
   constructor(private authService: AuthService, private router: Router) {}
+
  login(event: Event){
   event.preventDefault();
     console.log('Hello');
@@ -40,5 +43,8 @@ export class LogInComponent {
       }
     });
    }
-  
+   
+   navigateToSignup() {
+    this.router.navigate(['/signup']);
+  }
 }
