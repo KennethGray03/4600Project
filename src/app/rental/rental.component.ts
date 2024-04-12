@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef} from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../cartService';
 import { WishlistService } from '../wishlist.service';
@@ -56,6 +56,6 @@ ngOnInit() {
     }
   });
 }
-
+ 
   
 }
