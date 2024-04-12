@@ -8,6 +8,8 @@ import { RentalComponent } from './rental/rental.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { ContactComponent } from './contact/contact.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { PicturesComponent } from './pictures/pictures.component';
+
 
 
 
@@ -22,7 +24,8 @@ export const routes: Routes =
     {path: 'wishlist', component:WishlistComponent},
     {path: 'contact', component:ContactComponent},
     {path: 'homepage', component:HomepageComponent},
-    {path: 'signup', component:SignUpComponent}
+    {path: 'signup', component:SignUpComponent},
+    {path: 'pictures', component:PicturesComponent}
 ];
 
 

@@ -29,5 +29,11 @@ export class CartService {
   clearCart() {
     this.itemsSubject.next([]);
   }
+
+  removeFromCart(index: number) {
+    const currentItems = this.itemsSubject.getValue();
+    currentItems.splice(index, 1);
+    this.itemsSubject.next(currentItems);
+  }  
   
 }
