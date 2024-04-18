@@ -1,7 +1,10 @@
 <div class="container mx-auto py-8">
   <h1 class="text-3xl font-bold text-center mb-8">Checkout</h1>
 
-  <div *ngIf="items.length === 0" class="text-center">Your cart is empty</div>
+  <div *ngIf="items.length === 0" class="text-center" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    Your cart is empty
+    <img src="assets/EmptyCart.jpg" alt="emptyCart">
+  </div>
 
   <div *ngFor="let item of items; let i = index" class="bg-white rounded-lg shadow-md p-6 mb-4">
     <div class="flex justify-between items-center">
@@ -15,6 +18,6 @@
   
   <div *ngIf="items.length > 0" class="flex justify-end mt-4">
     <div>Total Price: ${{ totalPrice }}</div>
-    <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 ml-4" (click)="openStripeCheckout()">Checkout</button>
+    <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 ml-4">Checkout</button>
   </div>
 </div>

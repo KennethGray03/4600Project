@@ -1,7 +1,10 @@
 <div class="container mx-auto py-8">
   <h1 class="text-3xl font-bold text-center mb-8">Wishlist</h1>
 
-  <div *ngIf="wishlist.length === 0" class="text-center">Your wishlist is empty</div>
+  <div *ngIf="wishlist.length === 0" class="text-center" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    Your wishlist is empty
+    <img src="assets/EmptyCart.jpg" alt="emptyCart">
+  </div>
 
   <div *ngFor="let item of wishlist; let i = index" class="bg-white rounded-lg shadow-md p-6 mb-4">
     <div class="flex justify-between items-center">

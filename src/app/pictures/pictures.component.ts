@@ -30,4 +30,5 @@ rotateImages(): void {
   this.currentIndex = (this.currentIndex + 1) % this.images.length;
   this.images[this.currentIndex].visible = true;
 }
+
 }

@@ -1,21 +1,14 @@
-<section class="bg-white">
-    <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-black">Contact Us</h2>
-        <p class="mb-8 lg:mb-16 font-light text-center text-black"></p>
-        <form action="#" class="space-y-8">
-            <div>
-                <label for="email" class="block mb-2 text-sm font-medium text-black">Your email</label>
-                <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5" placeholder="name@flowbite.com" required>
-            </div>
-            <div>
-                <label for="subject" class="block mb-2 text-sm font-medium text-black">Subject</label>
-                <input type="text" id="subject" class="block p-3 w-full text-sm text-black bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-red-500 focus:border-red-500" placeholder="Let us know how we can help you" required>
-            </div>
-            <div>
-                <label for="message" class="block mb-2 text-sm font-medium text-black">Your message</label>
-                <textarea id="message" rows="6" class="block p-2.5 w-full text-sm text-black bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-red-500 focus:border-red-500" placeholder="Leave a comment..."></textarea>
-            </div>
-            <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300">Send message</button>
-        </form>
-    </div>
-</section>
+<div class="contact-container">
+    <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
+        <div class="contact-left-title">
+            <h2>Get in touch</h2>
+            <hr>
+        </div>
+        <input type="hidden" name="access_key" value="d5527b7d-a100-4e99-98a0-58c1fba85dba">
+        <input type="text" name="name" placeholder="Your Name" class="contact-inputs" required>
+        <input type="text" name="email" placeholder="Your Email" class="contact-inputs" required>
+        <textarea name="message" placeholder="Your Message" class="contact-inputs" required></textarea>
+        <button id="submit-btn" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700" type="submit">Submit</button>
+    </form>
+    
+</div>
