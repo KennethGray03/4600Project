@@ -15,20 +15,23 @@ label{
     font-size: larger;
 }
 
+.gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .gallery img {
-    display: none;
-    margin-left: 200px;
-    padding-bottom: 50px;
-  }
-  
-  .gallery img.visible {
-    display: block;
-  }
-  .gallery-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Adjust as needed */
-  }
+  margin: 10px; /* Add margin on all sides */
+  max-width: 800px; /* Limit maximum width */
+  max-height: 600px; /* Limit maximum height */
+  object-fit: cover; /* Crop the image to fit */
+  margin-bottom: 50px;
+}
+
+.gallery img.visible {
+  display: block;
+}
 
 
