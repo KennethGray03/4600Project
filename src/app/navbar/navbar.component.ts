@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive,} from '@angular/router';
+import { Router, RouterLink, RouterLinkActive,} from '@angular/router';
 import { TripsComponent } from '../trips/trips.component';
 import { LogInComponent } from '../log-in/log-in.component';
 import { RouterOutlet } from '@angular/router';
@@ -15,8 +15,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  constructor(public authService: AuthService) {}
+  username: string | null = null; // Initialize username property
 
+  constructor(public authService: AuthService, public router: Router) {}
+
+  
   logout(): void {
     this.authService.logout();
   }

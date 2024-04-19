@@ -18,4 +18,5 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class AppComponent {
   title = 'my-app';
+  username : string | undefined;
 }
