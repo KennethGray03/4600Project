@@ -16,20 +16,31 @@ import { Router } from '@angular/router';
 export class SignUpComponent {
   username: string = '';
   password: string = '';
+  
   errorMessage: string = '';
+  signupSuccess: boolean = false;
+firstName: string = '';
+lastName: string = '';
+ 
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  signup(event: Event) {
-    this.authService.signup(this.username, this.password).subscribe({
+ signup(event: Event) {
+    this.authService.signup(this.firstName,this.lastName, this.username, this.password, ).subscribe({
       next: (response) => {
         console.log('Signup successful', response);
-        // Optionally, redirect to a different route after successful signup
-        this.router.navigate(['/login']);
+        this.errorMessage = 'Account Created!';
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2000); // Timeout for 2 seconds before redirecting to login
       },
       error: (error) => {
         console.error('Signup failed', error);
-        this.errorMessage = 'Signup failed. Please try again.'; // Set error message
+        if (error.status == 409) {
+          this.errorMessage = 'Username is already taken. Please choose a different one.';
+        } else {
+          this.errorMessage = 'This username is taken!';
+        }
       }
     });
   }
