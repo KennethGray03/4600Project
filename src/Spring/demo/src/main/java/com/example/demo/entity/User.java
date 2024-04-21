@@ -8,9 +8,9 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
-    private List<String> wishlist;
+    private List<WishlistItem> wishlist;
     private List<String> rentalGear;
-    private List<String> cart;
+    private List<CartItem> cart;
     private List<String> tripsSignedUpFor;
 
     public User(String username, String password, String firstName, String lastName) {
@@ -23,7 +23,6 @@ public class User {
         this.cart = new ArrayList<>();
         this.tripsSignedUpFor = new ArrayList<>();
     }
-
 
     public String getUsername() {
         return username;
@@ -57,11 +56,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public List<String> getWishlist() {
+    public List<WishlistItem> getWishlist() {
         return wishlist;
     }
 
-    public void setWishlist(List<String> wishlist) {
+    public void setWishlist(List<WishlistItem> wishlist) {
         this.wishlist = wishlist;
     }
 
@@ -73,11 +72,11 @@ public class User {
         this.rentalGear = rentalGear;
     }
 
-    public List<String> getCart() {
+    public List<CartItem> getCart() {
         return cart;
     }
 
-    public void setCart(List<String> cart) {
+    public void setCart(List<CartItem> cart) {
         this.cart = cart;
     }
 
@@ -87,5 +86,12 @@ public class User {
 
     public void setTripsSignedUpFor(List<String> tripsSignedUpFor) {
         this.tripsSignedUpFor = tripsSignedUpFor;
+    }
+    public double calculateCartTotal() {
+        double total = 0.0;
+        for (CartItem item : cart) {
+            total += item.getPrice();
+        }
+        return total;
     }
 }
