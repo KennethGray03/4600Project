@@ -34,4 +34,8 @@ label{
   display: block;
 }
 
+.upload-section {
+  text-align: center;
+  margin-bottom: 20px; /* Adjust margin as needed */
+}
 

@@ -11,6 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
   styleUrl: './pictures.component.css'
 })
 export class PicturesComponent implements OnInit {
+  
   images = [
     { src: 'assets/FG stream.jpg', alt: 'Image 1', visible: true },
     { src: 'assets/Caving.jpg', alt: 'Image 2', visible: false },
@@ -39,4 +40,18 @@ rotateImages(): void {
   this.images[this.currentIndex].visible = true;
 }
 
+// Function to handle image upload
+uploadImage(event: any): void {
+  const file = event.target.files[0];
+
+  if (!file) {
+    alert('Please select an image file.');
+    return;
+  }
+
+  // Here you can handle the image file
+  // For example, you can add it to the images array
+  const newImage = { src: URL.createObjectURL(file), alt: 'Uploaded Image', visible: false };
+  this.images.push(newImage);
+}
 }
