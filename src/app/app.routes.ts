@@ -13,6 +13,7 @@ import { PicturesComponent } from './pictures/pictures.component';
 
 
 
+
 export const routes: Routes = 
 [
     {path:'', component: HomepageComponent},
@@ -26,6 +27,7 @@ export const routes: Routes =
     {path: 'homepage', component:HomepageComponent},
     {path: 'signup', component:SignUpComponent},
     {path: 'pictures', component:PicturesComponent}
+ 
 ];
 
 

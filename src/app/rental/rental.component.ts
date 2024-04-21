@@ -1,61 +1,84 @@
-import { Component, ViewChild, ElementRef} from '@angular/core';
-import { Router } from '@angular/router';
-import { CartService } from '../cartService';
-import { WishlistService } from '../wishlist.service';
+import { Component, OnInit, } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-
+import { WishlistService } from '../wishlist.service';
+import { AuthService } from '../auth.service';
+import { ItemService } from '../item.service';
+import { CartService } from '../cart.service';
 @Component({
   selector: 'app-rental',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,],
   templateUrl: './rental.component.html',
   styleUrl: './rental.component.css'
 })
 
-export class RentalComponent {
- 
-  constructor(private router: Router, 
-              private cartService: CartService,
-              private wishlistService: WishlistService) { }
+export class RentalComponent implements OnInit {
+  items: any[] = []; // Define an array to hold the fetched items
 
-  addToCart(product: any) {
-    this.cartService.addToCart(product); // Add the product to the cart
-    this.router.navigate(['/checkout']); // Navigate to the cart page
+  constructor(private cartService: CartService, private itemService: ItemService, private authService: AuthService, private wishlistService: WishlistService) { }
+
+  ngOnInit(): void {
+    this.fetchItems(); // Fetch items when the component initializes
   }
 
-  addToWishlist(product: any){
-    this.wishlistService.addToWishlist(product); 
-    this.router.navigate(['/wishlist']); // Navigate to the cart page
+  fetchItems() {
+    this.itemService.getAllItems().subscribe(
+      (data: any) => {
+        this.items = data; // Assign the fetched items to the items array
+      },
+      (error: any) => {
+        console.error('Error fetching items:', error);
+      }
+    );
   }
-
-  highlightWord(): void {
-    let searchText = (document.getElementById("searchBox") as HTMLInputElement)?.value;
-    let elements = document.querySelectorAll("#content p, #content h2, #content span, #content button");
-
-    if (searchText) {
-        elements.forEach(element => {
-            let originalText = element.textContent || '';
-            let escapedSearchText = searchText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'); // Escape special characters
-            let highlightedText = originalText.replace(new RegExp(escapedSearchText, "gi"), match => `<span style='background-color: yellow'>${match}</span>`);
-            element.innerHTML = highlightedText;
-        });
+  addToCart(item: any) {
+    const username = this.authService.getLoggedInUsername();
+    if (username) {
+      // Call the CartService method to add item to cart
+      this.cartService.addToCart(username, item.id).subscribe(
+        (response: any) => {
+          console.log('Item added to cart:', item);
+        },
+        (error: any) => {
+          console.error('Error adding item to cart:', error);
+        }
+      );
     } else {
-        elements.forEach(element => {
-            element.innerHTML = element.textContent || '';
-        });
+      console.error('User is not logged in.'); // Handle the case where the user is not logged in
     }
-}
-
-ngOnInit() {
-  document.getElementById("searchBox")?.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") {
-      this.highlightWord();
-    }
-  });
-}
+  }
  
-  
+
+  addToWishlist(item: any) {
+    const username = this.authService.getLoggedInUsername();
+    console.log(item);
+    if (username) {
+      this.wishlistService.addToWishlist(username, item.id).subscribe(
+        () => {
+          console.log('Added to wishlist:', item);
+        },
+        (error: any) => {
+          console.error('Error adding to wishlist:', error);
+        }
+      );
+    } else {
+      console.error('User is not logged in.'); // Handle the case where the user is not logged in
+    }
+  }
+  highlightWord() {
+    // Implement search functionality
+    console.log('Search functionality');
+  }
+  getImageName(itemName: string): string {
+    switch (itemName) {
+      case 'Trekking Backpack':
+        return 'Backpack.jpg';
+      case 'Mountain Bike':
+        return 'MountainBike.jpg';
+      case 'Camping Tent':
+        return 'tent3.jpg';
+      default:
+        return ''; // Handle unknown item names
+    }
+  }
 }

@@ -1,16 +1,31 @@
 .container {
-    max-width: 800px; /* Adjust the max-width as needed */
-    margin: 0 auto; /* This centers the container horizontally */
-    text-align: center; /* This centers the text within the container */
-  }
-  
-  .container h2 {
-    font-size: 24px; /* Adjust the font size as needed */
-    margin-bottom: 20px; /* Add some bottom margin to the heading */
-  }
-  .big-picture {
-    display: block; /* Ensure the image is displayed as a block element */
-    width: 100%; /* Stretch the image across the entire width of its container */
-    height: auto; /* Automatically adjust the height to maintain the aspect ratio */
-    margin: 0 auto 20px; /* Center the image horizontally and add some bottom margin */
-  }
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.big-picture {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 20px;
+}
+
+/* Additional styles for Why Choose Us section */
+.grid {
+  margin-top: 40px;
+}
+
+.grid div {
+  padding: 20px;
+  text-align: left;
+}
+
+.grid h3 {
+  margin-bottom: 10px;
+}

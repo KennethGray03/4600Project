@@ -1,15 +1,15 @@
-<h1>Submit your Gov's Outdoors Pictures!</h1>
-<form action="/upload" method="post" enctype="multipart/form-data">
-  <div class="file-upload-container">
-    <label for="photo">Select photo:</label>
-    <input type="file" id="photo" name="photo" accept="image/*">
-    <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700" type="submit">Upload Photo</button>
+<div class="container">
+  <h1>Submit your Gov's Outdoors Pictures!</h1>
+  <form action="/upload" method="post" enctype="multipart/form-data" class="upload-form">
+    <div class="file-upload-container">
+      <label for="photo" class="upload-label">Select photo:</label>
+      <input type="file" id="photo" name="photo" accept="image/*" class="upload-input">
+      <button class="upload-button bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700" type="submit">Upload Photo</button>
+    </div>
+  </form>
+  <h2 class="note">Pictures will be added into gallery after being deemed appropriate</h2>
 
+  <div class="gallery">
+    <img *ngFor="let image of images; let i = index" [src]="image.src" [alt]="image.alt" [class.visible]="image.visible" [class.hidden]="!image.visible">
   </div>
-  
-</form>
-<h1>Pictures will be added into gallery after being deemed appropriate</h1>
-
-<div class="gallery">
-  <img *ngFor="let image of images; let i = index" [src]="image.src" [alt]="image.alt" [class.visible]="image.visible" [class.hidden]="!image.visible">
 </div>
