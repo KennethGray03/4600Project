@@ -4,16 +4,19 @@ import { WishlistService } from '../wishlist.service';
 import { AuthService } from '../auth.service';
 import { ItemService } from '../item.service';
 import { CartService } from '../cart.service';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-rental',
   standalone: true,
-  imports: [CommonModule,],
+  imports: [CommonModule,FormsModule],
   templateUrl: './rental.component.html',
   styleUrl: './rental.component.css'
 })
 
 export class RentalComponent implements OnInit {
   items: any[] = []; // Define an array to hold the fetched items
+  searchText: string = '';
+
 
   constructor(private cartService: CartService, private itemService: ItemService, private authService: AuthService, private wishlistService: WishlistService) { }
 
@@ -65,9 +68,22 @@ export class RentalComponent implements OnInit {
       console.error('User is not logged in.'); // Handle the case where the user is not logged in
     }
   }
-  highlightWord() {
-    // Implement search functionality
-    console.log('Search functionality');
+  highlightWord(): void {
+    // Your search functionality implementation here
+    let elements = document.querySelectorAll("#content p, #content h2, #content span, #content button");
+
+    if (this.searchText) {
+      elements.forEach(element => {
+        let originalText = element.textContent || '';
+        let escapedSearchText = this.searchText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'); // Escape special characters
+        let highlightedText = originalText.replace(new RegExp(escapedSearchText, "gi"), match => `<span style='background-color: yellow'>${match}</span>`);
+        element.innerHTML = highlightedText;
+      });
+    } else {
+      elements.forEach(element => {
+        element.innerHTML = element.textContent || '';
+      });
+    }
   }
   getImageName(itemName: string): string {
     switch (itemName) {

@@ -21,9 +21,17 @@ export class RentalService {
     return this.http.get<any[]>(url);
   }
 
+<<<<<<< HEAD
   // Method to fetch rental item strings
   getRentalItemStrings(): Observable<string[]> {
     const url = `${this.apiUrl}/items`; // Assuming endpoint to fetch rental item strings
     return this.http.get<string[]>(url);
   }
+=======
+  searchRentalItems(query: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}?q=${query}`);
+  }
+
+  // Add methods for fetching, updating, and deleting rentals as needed
+>>>>>>> 935bac776a58f6f13fbecf3dab304bdf22811d25
 }
