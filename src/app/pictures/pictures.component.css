@@ -1,56 +1,41 @@
-.container {
-  padding: 20px;
+h1{
+  font-size: x-large;
+  font-weight: bold;
   text-align: center;
+  margin-bottom: 15px;
 }
 
-h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.upload-form {
-  margin-bottom: 30px;
-}
-
-.file-upload-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.upload-label {
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-right: 10px;
-}
-
-.upload-input {
-  display: none;
-}
-
-.upload-button {
-  cursor: pointer;
-}
-
-.note {
-  font-size: 1rem;
+label{
   margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  margin-left: 350px;
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
 }
 
 .gallery {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
 }
 
 .gallery img {
-  margin: 10px;
-  max-width: 300px;
-  max-height: 300px;
-  object-fit: cover;
+margin: 10px; /* Add margin on all sides */
+max-width: 800px; /* Limit maximum width */
+max-height: 600px; /* Limit maximum height */
+object-fit: cover; /* Crop the image to fit */
+margin-bottom: 50px;
 }
 
 .gallery img.visible {
-  display: block;
+display: block;
 }
+
+.upload-section {
+text-align: center;
+margin-bottom: 20px; /* Adjust margin as needed */
+}
+
