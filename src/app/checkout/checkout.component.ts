@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { CartService } from '../cart.service';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-
+import { RentalService } from '../rentalservice.service';
+import { ItemService } from '../item.service';
 
 @Component({
   selector: 'app-checkout',
@@ -14,102 +15,110 @@ import { Router } from '@angular/router';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-calculateSubtotal() {
-throw new Error('Method not implemented.');
-}
-hidePaymentForm() {
-throw new Error('Method not implemented.');
-}
-showPaymentForm() {
-  this.showSplashScreen = true;
-}
-processPayment() {
-throw new Error('Method not implemented.');
-}
   showSplashScreen: boolean = false;
-  cartItems: any[] = []; // Define an array to hold cart items
-  username: string | undefined;
+  cartItems: any[] = [];
   totalPrice: number = 0;
+  taxRate: number = 0.095; // 9.5%
+  tax: number = 0;
+  finalTotal: number = 0;
+  username: string | undefined;
+  paymentSuccessful: boolean = false;
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService,
+    private router: Router,
+    private rentalService: RentalService
+  ) {}
 
-  constructor(private cartService: CartService, private authService: AuthService, private router: Router) { }
-  backToCart(): void {
-    // Navigate back to the cart page
+  ngOnInit(): void {
+    const loggedInUsername = this.authService.getLoggedInUsername();
+    if (loggedInUsername) {
+      this.username = loggedInUsername;
+      this.loadCartItems();
+    } else {
+      console.error('Username not found');
+      // Handle scenario where username is not available
+    }
+  }
+  removeFromCart(index: number): void {
+    // Implementation of the removeFromCart method
+  }
+
+
+  loadCartItems(): void {
+  const username: string = this.username!;
+  if (username) {
+    this.cartService.getCartItems(username).subscribe(
+      (data: any[]) => {
+        this.cartItems = data;
+        this.calculateTotalPrice();
+      },
+      (error: any) => {
+        console.error('Error loading cart items:', error);
+      }
+    );
+  } else {
+    console.error('Username is undefined');
+  }
+}
+
+  calculateTotalPrice(): void {
+    this.totalPrice = this.cartItems.reduce((total, item) => total + item.price, 0);
+    this.calculateTaxAndFinalTotal();
+  }
+
+  calculateTaxAndFinalTotal(): void {
+    this.tax = this.totalPrice * this.taxRate;
+    this.finalTotal = this.totalPrice + this.tax;
+  }
+
+  showPaymentForm(): void {
+    this.showSplashScreen = true;
+  }
+
+  hidePaymentForm(): void {
     this.showSplashScreen = false;
   }
 
-  ngOnInit(): void {
-    // Fetch the username from the authentication service
-    this.username = this.authService.getLoggedInUsername();
-    if (this.username) {
-      this.loadCartItems(); // Fetch cart items when the component initializes
-      this.loadTotalPrice(); // Fetch total price when the component initializes
+  processPayment(): void {
+    const username = this.authService.getLoggedInUsername();
+    this.router.navigateByUrl('/homepage');
+    if (username) {
+      this.cartService.clearCart(username).subscribe(
+        () => {
+          this.paymentSuccessful = true;
+          // Loop through each cart item and process it
+          this.cartItems.forEach(item => {
+            const itemIds = [item.itemId]; // Pass the itemId of the current item
+            const rentalItem = item.itemName; // Pass the itemName of the current item
+            this.rentalService.createRentals(username, itemIds, rentalItem).subscribe(
+              () => {
+                console.log(`Rental for item ${item.itemId} created successfully`);
+              },
+              error => {
+                console.error(`Error creating rental for item ${item.itemId}:`, error);
+              }
+            );
+          });
+        },
+        error => {
+          console.error('Error clearing cart:', error);
+        }
+      );
     } else {
       console.error('Username not found');
     }
   }
-  checkout(): void {
-    // Show splash screen form
-    this.showSplashScreen = true;
+  
+  dismissAlert(): void {
+    this.paymentSuccessful = false;
   }
 
-  loadTotalPrice(): void {
-    if (this.username) {
-      this.cartService.getTotalPrice(this.username).subscribe(
-        (totalPrice: number) => {
-          this.totalPrice = totalPrice;
-        },
-        (error: any) => {
-          console.error('Error loading total price:', error);
-        }
-      );
-    } else {
-      console.error('Username is undefined');
-    }
-  }
-  loadCartItems(): void {
-    // Fetch cart items using the username if it's defined
-    if (this.username) {
-      this.cartService.getCartItems(this.username).subscribe(
-        (data: any[]) => {
-          this.cartItems = data; // Assign the fetched cart items to the cartItems array
-          this.calculateTotalPrice(); // Calculate total price after fetching cart items
-          console.log(this.cartItems);
-        },
-        (error: any) => {
-          console.error('Error loading cart items:', error);
-        }
-      );
-    } else {
-      console.error('Username is undefined');
-    }
+  backToCart(): void {
+    this.showSplashScreen = false;
   }
 
-  removeFromCart(index: number): void {
-    console.log('Removing item from cart:', this.cartItems[index]);
-    
-    // Extract the cartItemId of the item to be removed
-    const cartItemId = this.cartItems[index].cartItemId;
-    
-    // Call the service method to remove the item, passing the cartItemId and username
-    if (this.username) {
-      this.cartService.removeFromCart(this.username, cartItemId).subscribe(
-        (response: any) => {
-          this.cartItems.splice(index, 1);
-          console.log('Item removed successfully from cart:', response);
-          
-          // Recalculate total price after removing the item
-          this.calculateTotalPrice();
-        },
-        (error: any) => {
-          console.error('Error removing item from cart:', error);
-        }
-      );
-    } else {
-      console.error('Username is undefined');
-    }
-  }
-  calculateTotalPrice(): void {
-    // Calculate total price by summing up the prices of all items in the cart
-    this.totalPrice = this.cartItems.reduce((total, item) => total + item.price, 0);
-  }
 }
+
+
+

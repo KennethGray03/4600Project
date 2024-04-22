@@ -4,24 +4,33 @@ import java.util.Date;
 
 public class Rental {
     private String itemId;
+    private String rentalItem;
     private String username;
     private Date startDate;
     private Date endDate;
 
-    public Rental(String itemId, String username, Date startDate, Date endDate) {
+    public Rental(String itemId, String rentalItem, String username, Date startDate, Date endDate) {
         this.itemId = itemId;
+        this.rentalItem = rentalItem;
         this.username = username;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    // Getters and setters (optional)
     public String getItemId() {
         return itemId;
     }
 
     public void setItemId(String itemId) {
         this.itemId = itemId;
+    }
+
+    public String getRentalItem() {
+        return rentalItem;
+    }
+
+    public void setRentalItem(String rentalItem) {
+        this.rentalItem = rentalItem;
     }
 
     public String getUsername() {

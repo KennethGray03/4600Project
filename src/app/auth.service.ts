@@ -28,6 +28,7 @@ export class AuthService {
   // Log out user
   logout(): void {
     // Clear authentication state upon logout
+    console.log('Logout called');
     this.isAuthenticated = false;
     this.loggedInUsername = undefined;
     this.router.navigate(['/login']);

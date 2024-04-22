@@ -14,7 +14,7 @@ public class RentalService {
 
     private List<Rental> rentals = new ArrayList<>();
 
-    public void createRentals(String username, List<String> itemIds) {
+    public void createRentals(String username, List<String> itemIds, String rentalItem) {
         // Get the current date
         Date currentDate = new Date();
 
@@ -23,10 +23,11 @@ public class RentalService {
 
         // Create rental objects for each item ID and add them to the list of rentals
         for (String itemId : itemIds) {
-            Rental rental = new Rental(itemId, username, currentDate, endDate);
+            Rental rental = new Rental(itemId, rentalItem, username, currentDate, endDate);
             rentals.add(rental);
         }
     }
+
     public List<Rental> getRentalsByUsername(String username) {
         List<Rental> userRentals = new ArrayList<>();
         for (Rental rental : rentals) {

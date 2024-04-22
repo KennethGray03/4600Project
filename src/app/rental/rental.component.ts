@@ -77,6 +77,28 @@ export class RentalComponent implements OnInit {
         return 'MountainBike.jpg';
       case 'Camping Tent':
         return 'tent3.jpg';
+        case '2 Seater Canoe':
+          return '2seatercanoe.jpg'
+          case 'Hiking Boots':
+          return 'Hiking Boots.jpg'
+          case 'Inflatable Paddleboard':
+            return 'InflatablePaddleboard.jpg'
+            case 'PFD/Life Jacket':
+              return 'PFDLife acket.jpg'
+              case 'Inflatable Kayak':
+                return 'inflatablekayak.jpg'
+                case '2 Burner camp stove':
+                  return 'campstove.jpg'
+                  case 'Hammock':
+                    return 'Hammock.jpg'
+                    case 'Climbing Helmet':
+                      return 'climbinghelmet.jpg'
+                      case 'Climbing Shoes':
+                        return 'climbingshoes.jpg'
+                        case '10X10 Tarp':
+                          return '10x10 tarp.jpg'
+                          case 'Sleeping Bag':
+                            return 'sleepingbag.jpg'
       default:
         return ''; // Handle unknown item names
     }

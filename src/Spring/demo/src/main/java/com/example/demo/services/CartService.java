@@ -48,6 +48,9 @@ public class CartService {
             user.getCart().removeIf(item -> item.getCartItemId().equals(cartItemId));
         }
     }
+    public void clearCart(String username) {
+        userService.clearCart(username); // Call clearCart method on an instance of UserService
+    }
 
     private String generateUniqueID() {
         // Generate a unique ID using UUID

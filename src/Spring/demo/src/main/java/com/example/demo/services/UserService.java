@@ -24,11 +24,19 @@ public class UserService {
         users.put("user1", new User("user1", "123456", "John", "Doe"));   // Sample user 1
         users.put("user2", new User("user2", "password", "Jane", "Smith"));
         
-        // Populate wishlist for user "a" with a sample item
-        populateWishlistForUser("a", new WishlistItem(generateUniqueID(), "1", "Trekking Backpack", 99.99));
+       
 
         
     }
+    public void clearCart(String username) {
+        User user = users.get(username);
+        if (user != null) {
+            user.getCart().clear();
+        } else {
+            logger.error("User not found: " + username);
+        }
+    }
+
     
     public boolean authenticate(String username, String password) {
         User user = users.get(username);

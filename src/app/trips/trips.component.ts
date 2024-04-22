@@ -1,4 +1,6 @@
-import { Component, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -8,6 +10,6 @@ import { Component, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
   templateUrl: './trips.component.html',
   styleUrl: './trips.component.css'
 })
-export class TripsComponent  {
-
+export class TripsComponent {
 }
+

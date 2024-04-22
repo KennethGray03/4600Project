@@ -29,7 +29,7 @@ public class RentalController {
     @PostMapping("/create")
     public ResponseEntity<?> createRentals(@RequestBody rentalRequest request) {
         try {
-            rentalService.createRentals(request.getUsername(), request.getItemIds());
+            rentalService.createRentals(request.getUsername(), request.getItemIds(), request.getRentalItem());
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create rentals.");
@@ -40,5 +40,4 @@ public class RentalController {
         List<Rental> rentals = rentalService.getRentalsByUsername(username);
         return new ResponseEntity<>(rentals, HttpStatus.OK);
     }
-
 }

@@ -19,13 +19,16 @@ export class CartService {
     return this.http.post<any>(url, {});
   }
 
-  removeFromCart(username: string, cartItemId: string): Observable<any> {
-    const url = `${this.apiUrl}/${username}/${cartItemId}`;
-    return this.http.delete<any>(url);
+  clearCart(username: string): Observable<void> {
+    const url = `${this.apiUrl}/clear/${username}`;
+    return this.http.delete<void>(url);
   }
   getTotalPrice(username: string): Observable<number> {
     const url = `${this.apiUrl}/total/${username}`; // Adjusted endpoint path
     return this.http.get<number>(url);
   }
-
+  removeAllCartContents(username: string): Observable<any> {
+    const url = `${this.apiUrl}/removeAll/${username}`; // Adjusted endpoint path
+    return this.http.delete<any>(url);
+  }
 }

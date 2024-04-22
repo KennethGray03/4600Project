@@ -42,4 +42,8 @@ public class CartController {
     public double getCartTotal(@PathVariable String username) {
         return userService.getCartTotal(username);
     }
+    @DeleteMapping("/clear/{username}") // Define a new endpoint to clear the cart
+    public void clearCart(@PathVariable String username) {
+        cartService.clearCart(username);
+    }
 }

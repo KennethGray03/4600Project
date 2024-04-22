@@ -11,7 +11,7 @@ public class User {
     private List<WishlistItem> wishlist;
     private List<String> rentalGear;
     private List<CartItem> cart;
-    private List<String> tripsSignedUpFor;
+    private List<trip> tripsSignedUpFor;
 
     public User(String username, String password, String firstName, String lastName) {
         this.username = username;
@@ -80,11 +80,11 @@ public class User {
         this.cart = cart;
     }
 
-    public List<String> getTripsSignedUpFor() {
+    public List<trip> getTripsSignedUpFor() {
         return tripsSignedUpFor;
     }
 
-    public void setTripsSignedUpFor(List<String> tripsSignedUpFor) {
+    public void setTripsSignedUpFor(List<trip> tripsSignedUpFor) {
         this.tripsSignedUpFor = tripsSignedUpFor;
     }
     public double calculateCartTotal() {

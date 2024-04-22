@@ -11,8 +11,8 @@ export class RentalService {
 
   constructor(private http: HttpClient) { }
 
-  createRentals(username: string, itemIds: string[]): Observable<any> {
-    const requestBody = { username, itemIds };
+  createRentals(username: string, itemIds: string[], rentalItem: string): Observable<any> {
+    const requestBody = { username, itemIds, rentalItem };
     return this.http.post<any>(`${this.apiUrl}/create`, requestBody);
   }
 
@@ -21,5 +21,9 @@ export class RentalService {
     return this.http.get<any[]>(url);
   }
 
-  // Add methods for fetching, updating, and deleting rentals as needed
+  // Method to fetch rental item strings
+  getRentalItemStrings(): Observable<string[]> {
+    const url = `${this.apiUrl}/items`; // Assuming endpoint to fetch rental item strings
+    return this.http.get<string[]>(url);
+  }
 }
